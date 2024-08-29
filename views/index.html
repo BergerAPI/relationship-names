@@ -5,6 +5,8 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Couple Name Photos | See what your relationship looks like as a bird!</title>
+	<link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,301,400,401,500,501,700,701,900,901&display=swap"
+		rel="stylesheet">
 </head>
 
 <script>
@@ -44,6 +46,7 @@
 		padding: 0px 12px;
 		max-width: 512px;
 		margin: auto;
+		font-family: 'Satoshi', sans-serif;
 	}
 
 	#result {
@@ -53,8 +56,18 @@
 		height: auto;
 	}
 
-	#markup {
+	.text {
 		text-align: justify;
+	}
+
+	#mainForm {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	.button {
+		padding: 8px;
 	}
 </style>
 
@@ -62,9 +75,11 @@
 	<main id="root">
 		<div id="markup">
 			<h1>Finde das Bild für deine Beziehung!</h1>
-			<p>Trage den Namen deines Partners und dir in die Eingabefelder ein, und finde heraus, welcher Vogel, welche
+			<p class="text">Trage den Namen deines Partners und dir in die Eingabefelder ein, und finde heraus, welcher
+				Vogel, welche
 				Blume, oder welches Tier zu eurer Beziehung gehört.</p>
-			<p>Ob es der majestätische Adler, die zarte Rose oder der treue Wolf ist - jedes Symbol erzählt eure ganz
+			<p class="text">Ob es der majestätische Adler, die zarte Rose oder der treue Wolf ist - jedes Symbol erzählt
+				eure ganz
 				besondere Liebesgeschichte. Bist du bereit, das Bild eurer Liebe zu finden?</p>
 		</div>
 
@@ -87,7 +102,9 @@
 				<input id="second" name="second" placeholder="Lana" />
 			</div>
 
-			<button>Euer Bild finden</button>
+			<div>
+				<button class="button">Euer Bild finden</button>
+			</div>
 		</form>
 	</main>
 </body>
