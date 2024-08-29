@@ -2,9 +2,16 @@ import express from "express"
 import 'dotenv/config'
 
 const ALPHABET = "abcdefghijklmnopqrstuvwxyz";
+const PER_PAGE = 30
 
+/**
+ * Requesting a set of images from a collection at unsplash
+ * @param id The id of the collection
+ * @param page for pagination
+ * @returns images in the collection
+ */
 const fetchCollection = async (id: string, page: number = 0) => {
-	const req = await fetch(`https://api.unsplash.com/collections/${id}/photos?client_id=${process.env.UNSPLASH_ACCESS}&per_page=30&page=${page}`)
+	const req = await fetch(`https://api.unsplash.com/collections/${id}/photos?client_id=${process.env.UNSPLASH_ACCESS}&per_page=${PER_PAGE}&page=${page}`)
 	const json = await req.json()
 
 	return json as any[]
@@ -32,8 +39,8 @@ const fetchCollection = async (id: string, page: number = 0) => {
 		const imageIndex = ALPHABET.indexOf(validatedFirstInital) * ALPHABET.indexOf(validatedSecondInital)
 
 		// Requesting the image from unsplash
-		const collection = await fetchCollection("4760062", Math.floor((imageIndex) / 30))
-		const image = collection[Math.abs((imageIndex) % 30)]
+		const collection = await fetchCollection("4760062", Math.floor((imageIndex) / PER_PAGE))
+		const image = collection[Math.abs((imageIndex) % PER_PAGE)]
 
 		return response.json({ raw: image.urls.raw, alt: image.alt_description, width: image.width, height: image.height })
 	})
