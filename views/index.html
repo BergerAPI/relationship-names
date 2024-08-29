@@ -38,6 +38,12 @@
 		image.setAttribute("height", json.width);
 		image.setAttribute("width", json.height);
 		image.setAttribute("alt", json.alt);
+
+		const attribution = document.getElementById("resultAttribution")
+		attribution.classList.remove("hidden")
+		const photographer = document.getElementById("photographer")
+		photographer.setAttribute("href", `https://unsplash.com/@${json.username}?utm_source=relationship-names&utm_medium=referral`)
+		photographer.innerHTML = json.photographer
 	}
 </script>
 
@@ -58,6 +64,14 @@
 
 	.text {
 		text-align: justify;
+	}
+
+	.unsplash {
+		color: gray;
+	}
+
+	.hidden {
+		display: none;
 	}
 
 	#mainForm {
@@ -83,10 +97,6 @@
 				besondere Liebesgeschichte. Bist du bereit, das Bild eurer Liebe zu finden?</p>
 		</div>
 
-		<div id="resultWrapper">
-			<img id="result" />
-		</div>
-
 		<form id="mainForm">
 			<div>
 				<label for="first">
@@ -106,6 +116,20 @@
 				<button class="button">Euer Bild finden</button>
 			</div>
 		</form>
+
+		<div>
+			<p class="text unsplash">Die Bilder, die auf dieser Website gezeigt werden, sind von Unsplash bereitgestellt
+				wurden.
+			</p>
+		</div>
+
+		<div id="resultWrapper">
+			<img id="result" />
+			<div id="resultAttribution" class="hidden">
+				Foto von <a id="photographer"></a> auf <a
+					href="https://unsplash.com/?utm_source=relationship-names&utm_medium=referral">Unsplash</a>
+			</div>
+		</div>
 	</main>
 </body>
 
