@@ -1,4 +1,5 @@
 import express from "express"
+import fs from "fs"
 import 'dotenv/config'
 
 const ALPHABET = "abcdefghijklmnopqrstuvwxyz";
@@ -43,6 +44,12 @@ const fetchCollection = async (id: string, page: number = 0) => {
 		const image = collection[Math.abs((imageIndex) % PER_PAGE)]
 
 		return response.json({ raw: image.urls.raw, alt: image.alt_description, width: image.width, height: image.height })
+	})
+
+	app.get("/", (_, response) => {
+		var html = fs.readFileSync('./views/index.html', 'utf8')
+
+		response.send(html)
 	})
 
 	app.listen(3000)

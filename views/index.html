@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Couple Name Photos | See what your relationship looks like as a bird!</title>
+</head>
+
+<script>
+	window.onload = () => {
+
+		// Listening to form submission
+		const form = document.querySelector("#mainForm");
+		form.addEventListener("submit", onSubmit, false)
+	}
+
+	const onSubmit = async (event) => {
+		// Preventing the default action of forms, which would be sending a request and reloading
+		event.preventDefault();
+
+		const firstName = document.getElementById("first").value
+		const secondName = document.getElementById("second").value
+
+		// Validating the input
+		if (firstName.length < 1 || secondName.length < 1)
+			return
+
+		// Sending a request to the backend
+		const res = await fetch(`/api/v1/image?first=${firstName.charAt(0)}&second=${secondName.charAt(0)}`)
+		const json = await res.json()
+
+		// Setting the image metadata
+		const image = document.getElementById("result")
+		image.setAttribute("src", json.raw);
+		image.setAttribute("height", json.width);
+		image.setAttribute("width", json.height);
+		image.setAttribute("alt", json.alt);
+	}
+</script>
+
+<body>
+	<div id="resultWrapper">
+		<img id="result" />
+	</div>
+
+	<form id="mainForm">
+		<div>
+			<label for="first">
+				First Name
+			</label>
+			<input id="first" name="first" placeholder="Niclas" />
+		</div>
+
+		<div>
+			<label for="second">
+				Second Name
+			</label>
+			<input id="second" name="second" placeholder="Lana" />
+		</div>
+
+		<button>Check</button>
+	</form>
+</body>
+
+</html>
