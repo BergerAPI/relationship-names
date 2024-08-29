@@ -43,7 +43,7 @@ const fetchCollection = async (id: string, page: number = 0) => {
 		const collection = await fetchCollection("4760062", Math.floor((imageIndex) / PER_PAGE))
 		const image = collection[Math.abs((imageIndex) % PER_PAGE)]
 
-		return response.json({ raw: image.urls.raw, alt: image.alt_description, width: image.width, height: image.height })
+		return response.json({ url: image.urls.regular, alt: image.alt_description, width: image.width, height: image.height })
 	})
 
 	app.get("/", (_, response) => {

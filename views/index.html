@@ -32,35 +32,64 @@
 
 		// Setting the image metadata
 		const image = document.getElementById("result")
-		image.setAttribute("src", json.raw);
+		image.setAttribute("src", json.url);
 		image.setAttribute("height", json.width);
 		image.setAttribute("width", json.height);
 		image.setAttribute("alt", json.alt);
 	}
 </script>
 
+<style>
+	#root {
+		padding: 0px 12px;
+		max-width: 512px;
+		margin: auto;
+	}
+
+	#result {
+		max-width: 100%;
+		display: block;
+		width: auto;
+		height: auto;
+	}
+
+	#markup {
+		text-align: justify;
+	}
+</style>
+
 <body>
-	<div id="resultWrapper">
-		<img id="result" />
-	</div>
-
-	<form id="mainForm">
-		<div>
-			<label for="first">
-				First Name
-			</label>
-			<input id="first" name="first" placeholder="Niclas" />
+	<main id="root">
+		<div id="markup">
+			<h1>Finde das Bild für deine Beziehung!</h1>
+			<p>Trage den Namen deines Partners und dir in die Eingabefelder ein, und finde heraus, welcher Vogel, welche
+				Blume, oder welches Tier zu eurer Beziehung gehört.</p>
+			<p>Ob es der majestätische Adler, die zarte Rose oder der treue Wolf ist - jedes Symbol erzählt eure ganz
+				besondere Liebesgeschichte. Bist du bereit, das Bild eurer Liebe zu finden?</p>
 		</div>
 
-		<div>
-			<label for="second">
-				Second Name
-			</label>
-			<input id="second" name="second" placeholder="Lana" />
+		<div id="resultWrapper">
+			<img id="result" />
 		</div>
 
-		<button>Check</button>
-	</form>
+		<form id="mainForm">
+			<div>
+				<label for="first">
+					Dein Name
+				</label>
+				<input id="first" name="first" placeholder="Niclas" />
+			</div>
+
+			<div>
+				<label for="second">
+					Name deines Partners
+				</label>
+				<input id="second" name="second" placeholder="Lana" />
+			</div>
+
+			<button>Euer Bild finden</button>
+		</form>
+	</main>
 </body>
 
 </html>
