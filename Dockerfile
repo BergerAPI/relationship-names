@@ -1,17 +1,15 @@
-FROM node:10-alpine
+FROM node:22-alpine
 
-RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
+WORKDIR /usr
 
-WORKDIR /home/node/app
+COPY package.json ./
+COPY tsconfig.json ./
 
-COPY package*.json ./
-
-USER node
+COPY src ./src
+COPY views ./views
 
 RUN npm install
 
-COPY --chown=node:node . .
-
 EXPOSE 3000
 
-CMD [ "npm", "run", "start" ]
+CMD ["npm","run","start"]

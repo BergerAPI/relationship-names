@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "src/main.ts",
   "scripts": {
-    "start": "ts-node src/main.ts"
+    "start": "tsc && node dist/main.js",
+    "dev": "ts-node src/main.ts"
   },
   "keywords": [],
   "author": "",
